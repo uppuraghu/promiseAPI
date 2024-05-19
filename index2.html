@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style=" background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);">
+    <script>
+          function fetchdata (){
+       let data=fetch("https://fakestoreapi.com/products")
+        return data;
+    }
+    async function getResult(){
+        data=await fetchdata()
+        response=await data.json()
+        
+        for(i of response){
+            dtag=document.createElement("details")
+            
+            
+            dtag.setAttribute("style","border:5px solid aqua;text-transform: uppercase;border-radius:50px;width:25%; margin-left: 500px;margin-top:20px;padding:30px;")
+           
+            title=document.createElement("summary")
+           title.style.color="black"
+           title.style.fontWeight = 'bold'
+            category=document.createElement("p")
+            
+            image=document.createElement("img")
+            image.style.width="100px"
+            image.style.marginLeft="100px   "
+            price=document.createElement("h3")
+            price.style.marginLeft="90px   "
+            price.style.color="white"
+            rating=document.createElement("h3")
+            rating.style.marginLeft="100px   "
+            rating.style.color="pink"
+        
+            title.innerHTML=i.title
+            category.innerHTML="category: "+i.category
+            image.src=i.image;
+            price.innerHTML="Price : $"+i.price;
+            rating.innerHTML="Rating: "+i.rating.rate ;
+            dtag.appendChild(title)
+            dtag.appendChild(category)
+            dtag.appendChild(image)
+            dtag.appendChild(price)
+            dtag.appendChild(rating)
+            document.body.appendChild(dtag)
+
+        }
+
+    }
+    getResult()
+    </script>
+</body>
+</html>     
